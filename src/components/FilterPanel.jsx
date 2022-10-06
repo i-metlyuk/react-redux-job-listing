@@ -1,15 +1,11 @@
 import {Badge} from 'UI/Badge';
 import {Card} from 'UI/Card';
 import {Stack} from 'UI/Stack';
-import {useDispatch, useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {selectAllFilters} from "../store/filters/filters-selectors";
 import {removeAllFilters, removeFilter} from "../store/filters/filters-actions";
 
-
-const FilterPanel = () => {
-    const dispatch = useDispatch();
-    const filters = useSelector(selectAllFilters);
-
+const _FilterPanel = ({filters, removeFilter, removeAllFilters}) => {
     if (filters.length === 0) {
         return <></>
     }
@@ -23,7 +19,7 @@ const FilterPanel = () => {
                             <Badge
                                 key={filter}
                                 variant="clearable"
-                                onClear={()=> dispatch(removeFilter(filter))}
+                                onClear={()=> removeFilter(filter)}
                             >
                                 {filter}
                             </Badge>
@@ -33,7 +29,7 @@ const FilterPanel = () => {
 
                 <button
                     className='link'
-                    onClick={() => dispatch(removeAllFilters())}
+                    onClick={() => removeAllFilters()}
                 >
                     Clear
                 </button>
@@ -41,5 +37,14 @@ const FilterPanel = () => {
         </Card>
     )
 }
+
+const mapStateToProps = (state) => ({
+    filters: selectAllFilters(state)
+})
+
+const FilterPanel = connect(mapStateToProps, {
+    removeFilter,
+    removeAllFilters
+})(_FilterPanel);
 
 export {FilterPanel};
