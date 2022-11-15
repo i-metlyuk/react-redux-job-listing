@@ -2,8 +2,8 @@ import {Badge} from 'UI/Badge';
 import {Card} from 'UI/Card';
 import {Stack} from 'UI/Stack';
 import {useDispatch, useSelector} from "react-redux";
-import {selectAllFilters} from "../store/filters/filters-selectors";
-import {removeAllFilters, removeFilter} from "../store/filters/filters-actions";
+
+import {removeFilter, removeAllFilters, selectAllFilters} from "./filter-slice";
 
 
 const FilterPanel = () => {

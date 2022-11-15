@@ -1,3 +1,0 @@
-export const ADD_FILTER = 'ADD_FILTER';
-export const REMOVE_FILTER = 'REMOVE_FILTER';
-export const REMOVE_ALL_FILTERS = 'REMOVE_ALL_FILTERS';
